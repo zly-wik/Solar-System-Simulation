@@ -70,13 +70,15 @@ class SpaceManager(object):
         if event.key == pygame.K_UP:
             self.obj2.mass += 10.0
 
+        return True
+
     def get_events(self):
         """Get events."""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 return False
             if event.type == pygame.KEYDOWN:
-                self.get_keydown_events(event)
+                return self.get_keydown_events(event)
 
         return True
 
