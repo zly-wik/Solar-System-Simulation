@@ -5,10 +5,7 @@ G = 6.6743
 
 
 class GravityObject(object):
-    """Gravity object class used as base class for all gravity objects.
-
-    DEPRECATED: Will be replaced with rigidbody object class in the future.
-    """
+    """Gravity object class used as base class for all gravity objects."""
 
     def __init__(
         self,
@@ -43,9 +40,13 @@ class GravityManager(object):
         """Initialize object pool."""
         self.object_pool: list[GravityObject] = []
 
-    def add_object_to_pool(self, obj: GravityObject) -> None:
+    def add_object_to_pool(self, obj) -> bool:
         """Add gravity object to pool."""
-        self.object_pool.append(obj)
+        if isinstance(obj, GravityObject):
+            self.object_pool.append(obj)
+            return True
+
+        return False
 
     def get_objects_from_pool(self) -> list[GravityObject]:
         """Get all objects from pool."""
